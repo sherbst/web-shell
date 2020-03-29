@@ -1,7 +1,5 @@
 import React from 'react';
 
-import config from '../util/config';
-
 export enum LineType {
     REQUEST,
     RESPONSE
@@ -13,15 +11,16 @@ export interface Line {
 }
 
 export interface Props {
-    lines: Line[]
+    lines: Line[],
+    prompt: string
 }
 
-export default function Output({ lines }: Props): any {
+export default function Output({ lines, prompt }: Props): any {
     return lines.map(line => {
         let displayText: string;
 
         if(line.type === LineType.REQUEST) {
-            displayText = `${config.prompt} ${line.value}`
+            displayText = `${prompt} ${line.value}`
         } else {
             displayText = line.value;
         }
